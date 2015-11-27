@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relMunicipio" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="30" rightMargin="30" topMargin="20" bottomMargin="20" uuid="39506f64-763d-4293-b400-899405fe511e">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="ISO-8859-1"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="nmSistema" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="imagemLogo" class="java.lang.String" isForPrompting="false"/>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="nome" class="java.lang.String"/>
+	<field name="uf.nome" class="java.lang.String"/>
+	<field name="populacao" class="java.lang.Long"/>
+	<field name="uf.id" class="java.lang.Integer"/>
+	<variable name="totalPopulacao" class="java.lang.Long" resetType="Group" resetGroup="UF" calculation="Sum">
+		<variableExpression><![CDATA[$F{populacao}]]></variableExpression>
+	</variable>
+	<variable name="mediaPopulacao" class="java.lang.Double" resetType="Group" resetGroup="UF" calculation="Average">
+		<variableExpression><![CDATA[$F{populacao}]]></variableExpression>
+	</variable>
+	<group name="UF">
+		<groupExpression><![CDATA[$F{uf.id}]]></groupExpression>
+		<groupHeader>
+			<band height="84">
+				<textField>
+					<reportElement uuid="80394b49-d4d6-4b7e-b8fa-396d051f57e3" x="49" y="19" width="474" height="20"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{uf.nome}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="ce530dfb-077a-4053-b17a-ab3b45c3fb56" x="7" y="19" width="25" height="20"/>
+					<textElement/>
+					<text><![CDATA[UF]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="dc8b6da6-c750-4b7d-b866-dfba7b524a65" x="7" y="39" width="100" height="20"/>
+					<textElement/>
+					<text><![CDATA[Código]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="03d20746-cb0c-475e-b46e-df7fcd72832b" x="126" y="39" width="100" height="20"/>
+					<textElement/>
+					<text><![CDATA[Nome]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="afb2bbcf-97cc-40df-80a5-199489d68dae" x="429" y="39" width="94" height="20"/>
+					<textElement/>
+					<text><![CDATA[População]]></text>
+				</staticText>
+				<line>
+					<reportElement uuid="115543b9-debb-4a19-90ea-7795ebd99a49" x="0" y="72" width="535" height="2"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="47">
+				<textField>
+					<reportElement uuid="18541875-a291-4cee-bdcf-81b76cdabad4" x="430" y="21" width="100" height="20"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$V{totalPopulacao}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.00;-###0.00">
+					<reportElement uuid="15b23a7a-b309-4dca-8cd9-56f42172cf03" x="126" y="21" width="107" height="20"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$V{mediaPopulacao}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="dca1291e-d73f-49ef-bf01-84127b82376d" x="367" y="21" width="51" height="20"/>
+					<textElement/>
+					<text><![CDATA[Total]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="a5231e81-01dc-4df7-b048-2c0a8f174df7" x="5" y="21" width="102" height="20"/>
+					<textElement/>
+					<text><![CDATA[Média Populacional]]></text>
+				</staticText>
+				<line>
+					<reportElement uuid="3a23cad7-85cd-411a-8ff9-575d36e56ef8" x="5" y="10" width="530" height="1"/>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="1" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="70" splitType="Stretch">
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="69c72093-6bc3-4688-a9cd-003a22787ee9" key="textField" x="138" y="9" width="255" height="18"/>
+				<textElement>
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nmSistema}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="7365dd01-8675-4b09-8731-ad29c57621e7" key="staticText-1" x="146" y="51" width="221" height="13"/>
+				<textElement textAlignment="Center">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Relatorio de Municipio]]></text>
+			</staticText>
+			<textField evaluationTime="Report" pattern="dd/MM/yyyy" isBlankWhenNull="false">
+				<reportElement uuid="f03eaf52-7f60-49ac-8f3f-0b60fda11068" key="textField" x="429" y="9" width="100" height="18"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="0ce533d3-688a-4829-a8df-8eb36ae911fc" key="textField" x="370" y="41" width="100" height="18"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Pagina " + $V{PAGE_NUMBER} + " de "]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report" isBlankWhenNull="false">
+				<reportElement uuid="b596570e-0c99-412c-81ca-3a0a39534bf3" key="textField" x="473" y="41" width="57" height="18"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["" + $V{PAGE_NUMBER} + ""]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement uuid="3c3cb36d-5183-4aa8-977e-ac31314ac9e3" key="image-1" x="5" y="7" width="125" height="57"/>
+				<imageExpression><![CDATA[$P{imagemLogo}]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="31" splitType="Stretch">
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="e10e70f0-0cf8-44c8-b24b-9215a625138a" key="textField" x="7" y="6" width="100" height="18"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="fd15b12a-b211-48ab-a305-d42b7d40f37c" key="textField" x="126" y="6" width="282" height="18"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement uuid="ba17d0ac-e49d-45c2-9505-94ffa012a716" x="429" y="6" width="100" height="18"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{populacao}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<lastPageFooter>
+		<band splitType="Stretch"/>
+	</lastPageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

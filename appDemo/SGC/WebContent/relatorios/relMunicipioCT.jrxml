@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relMunicipioCT" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="30" rightMargin="30" topMargin="20" bottomMargin="20" uuid="39506f64-763d-4293-b400-899405fe511e">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="ISO-8859-1"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<parameter name="nmSistema" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="imagemLogo" class="java.lang.String" isForPrompting="false"/>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="nome" class="java.lang.String"/>
+	<field name="uf.nome" class="java.lang.String"/>
+	<field name="populacao" class="java.lang.Long"/>
+	<field name="uf.id" class="java.lang.Integer"/>
+	<variable name="totalPopulacao" class="java.lang.Integer" resetType="Group" resetGroup="UF" calculation="Sum"/>
+	<variable name="mediaPopulacao" class="java.lang.Double" resetType="Group" resetGroup="UF" calculation="Average"/>
+	<variable name="uf.nome_1" class="java.lang.Integer" resetType="Group" resetGroup="UF" calculation="Count">
+		<variableExpression><![CDATA[$F{uf.nome}]]></variableExpression>
+	</variable>
+	<group name="UF">
+		<groupExpression><![CDATA[$F{uf.id}]]></groupExpression>
+		<groupHeader>
+			<band height="1"/>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="1" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="79" splitType="Stretch">
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField" x="138" y="9" width="255" height="18" uuid="69c72093-6bc3-4688-a9cd-003a22787ee9"/>
+				<textElement>
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nmSistema}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-1" x="146" y="51" width="221" height="13" uuid="7365dd01-8675-4b09-8731-ad29c57621e7"/>
+				<textElement textAlignment="Center">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Relatorio de Municipio]]></text>
+			</staticText>
+			<textField evaluationTime="Report" pattern="dd/MM/yyyy" isBlankWhenNull="false">
+				<reportElement key="textField" x="429" y="9" width="100" height="18" uuid="f03eaf52-7f60-49ac-8f3f-0b60fda11068"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField" x="370" y="41" width="100" height="18" uuid="0ce533d3-688a-4829-a8df-8eb36ae911fc"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Pagina " + $V{PAGE_NUMBER} + " de "]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report" isBlankWhenNull="false">
+				<reportElement key="textField" x="473" y="41" width="57" height="18" uuid="b596570e-0c99-412c-81ca-3a0a39534bf3"/>
+				<textFieldExpression><![CDATA["" + $V{PAGE_NUMBER} + ""]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement key="image-1" x="5" y="7" width="125" height="57" uuid="3c3cb36d-5183-4aa8-977e-ac31314ac9e3"/>
+				<imageExpression><![CDATA[$P{imagemLogo}]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<lastPageFooter>
+		<band splitType="Stretch"/>
+	</lastPageFooter>
+	<summary>
+		<band height="113" splitType="Stretch"/>
+	</summary>
+</jasperReport>

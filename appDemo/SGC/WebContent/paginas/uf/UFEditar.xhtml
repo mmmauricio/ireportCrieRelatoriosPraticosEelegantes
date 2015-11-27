@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:ui="http://java.sun.com/jsf/facelets" 
+	  xmlns:h="http://java.sun.com/jsf/html" 
+	  xmlns:f="http://java.sun.com/jsf/core" 
+	  xmlns:p="http://primefaces.org/ui">	  
+	<ui:composition template="/templates/template.xhtml">
+		<ui:define name="title"><p:outputLabel value="#{msg.ufEditar}"/></ui:define>
+			<ui:define name="context">
+				<h:form id="fufalt">
+				    <p:growl id="mensagens"/>
+	    			<p:panel align="center">
+	    	    		<div align="center">
+	    					<p:outputLabel value="#{msg.ufCadastro}"></p:outputLabel>
+			 			</div>
+			  			<div align="center">
+		    				<p:panelGrid columns="2" align="center" >		        
+		         				<p:outputLabel value="#{msg.nome}"/>
+								<p:inputText value="#{ufMB.uf.nome}" required="true" requiredMessage="#{msg.nomeCampoObrigatorio}" size="50" maxlength="50"/>
+								<p:outputLabel value="#{msg.sigla}"/>
+								<p:inputText value="#{ufMB.uf.sigla}" required="true" requiredMessage="#{msg.siglaCampoObrigatorio}" size="10" maxlength="2"/>						
+	            			</p:panelGrid>
+	            		</div>
+	            		<div align="center">
+	            			<p:panelGrid columns="3">	
+								<p:commandButton value="#{msg.alterar}" action="#{ufMB.atualizar}" update=":mensagem"/>
+								<p:commandButton value="#{msg.cancelar}" action="#{ufMB.cancelar}" immediate="true"/>
+							</p:panelGrid>
+			    		</div>   
+			 	</p:panel>	
+		 		<div align="left">
+		    		<p:outputLabel value="#{ufMB.rodapePag}"></p:outputLabel>
+				</div>			 
+			</h:form>	
+		</ui:define>
+	</ui:composition>
+</html>

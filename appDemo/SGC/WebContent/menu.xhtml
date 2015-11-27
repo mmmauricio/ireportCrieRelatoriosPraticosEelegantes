@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:p="http://primefaces.org/ui">
+     <h:head>  
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>    
+        <title>Menu</title>  
+    </h:head>  
+    <h:body>      
+    	<h:form>    	
+		 	<p:menubar autoSubmenuDisplay="true">  
+				<p:submenu label="#{msg.cadastro}">
+				   	<p:menuitem url="#{pageContext.servletContext.contextPath}/paginas/uf/UF.jsf" value="#{msg.uf}"/>	
+					<p:separator />  
+					<p:menuitem action="#{municipioMB.init}" value="#{msg.municipio}"/>
+					<p:separator />  	
+					<p:menuitem action="#{clienteMB.init}" value="#{msg.cliente}"/>					
+				</p:submenu>					
+		 	</p:menubar>  
+    	</h:form> 
+     </h:body>     
+</html>
+
+
+
+

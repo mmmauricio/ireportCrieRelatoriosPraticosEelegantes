@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:ui="http://java.sun.com/jsf/facelets" 
+	  xmlns:h="http://java.sun.com/jsf/html" 
+	  xmlns:f="http://java.sun.com/jsf/core" 
+	  xmlns:p="http://primefaces.org/ui">
+
+<h:head>   
+	<h:outputScript library="javascript" name="sgc.js"/>
+	<title>
+		<ui:insert name="title">JSF</ui:insert>
+	</title>
+</h:head>
+<h:body style="background-color:white">
+	    <div id="header">
+         <div id="logo">
+			<ui:insert name="cabecalho">
+				<ui:include src="/templates/cabecalho.xhtml" />
+			</ui:insert>
+	     </div>	
+		 <div id="menu">
+			<ui:insert name="menu">
+				<ui:include src="/menu.xhtml"/> 
+			</ui:insert>
+		 </div>			
+	</div>	
+	<p:messages id="mensagem" showDetail="true"/>	
+	<div id="context">
+		<ui:insert name="context"></ui:insert>
+	</div>
+ 	
+</h:body>
+</html>

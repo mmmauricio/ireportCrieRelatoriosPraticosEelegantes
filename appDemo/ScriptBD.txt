@@ -1,0 +1,36 @@
+CREATE DATABASE sgc;
+
+CREATE TABLE uf
+(
+  codigo_uf integer NOT NULL,
+  sigla character varying(2),
+  nome character varying(100),
+  CONSTRAINT pk_uf PRIMARY KEY (codigo_uf)
+);
+
+CREATE TABLE municipio
+(
+  codigo_municipio integer NOT NULL,
+  nome character varying(100),
+  populacao integer,
+  codigo_uf integer,
+  CONSTRAINT pk_municipio PRIMARY KEY (codigo_municipio),
+  CONSTRAINT fk_municipio FOREIGN KEY (codigo_uf)
+      REFERENCES uf (codigo_uf) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+);
+
+CREATE TABLE cliente
+(
+  codigo_cliente integer NOT NULL,
+  nome character varying(100),
+  endereco character varying(200),
+  observacao character varying(1024),
+  codigo_municipio integer,
+  dlatitude double precision,
+  dlongitude double precision,
+  CONSTRAINT pk_cliente PRIMARY KEY (codigo_cliente),
+  CONSTRAINT fk_cliente FOREIGN KEY (codigo_municipio)
+      REFERENCES municipio (codigo_municipio) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)

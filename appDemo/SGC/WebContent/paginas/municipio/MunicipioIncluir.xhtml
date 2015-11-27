@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:ui="http://java.sun.com/jsf/facelets" 
+	  xmlns:h="http://java.sun.com/jsf/html" 
+	  xmlns:f="http://java.sun.com/jsf/core" 
+	  xmlns:p="http://primefaces.org/ui">	  
+	<ui:composition template="/templates/template.xhtml">
+		<ui:define name="title"><p:outputLabel value="#{msg.municipio}"/></ui:define>
+			<ui:define name="context">
+				<h:form>
+				    <p:growl id="mensagens"/>
+	    			<p:panel align="center">
+	    	    		<div align="center">
+	    					<p:outputLabel value="#{msg.municipioCadastro}"></p:outputLabel>
+			 			</div>
+			  			<div align="center">
+		    				<p:panelGrid columns="2" align="center" >		        
+		         				<p:outputLabel value="#{msg.nome}"/>
+								<p:inputText id="Nome" value="#{municipioMB.municipio.nome}" size="50" maxlength="50"/>
+								<p:outputLabel value="#{msg.populacao}"/>
+								<p:inputText id="populacao" value="#{municipioMB.municipio.populacao}" size="50" maxlength="3"/>
+				    			<p:outputLabel value="#{msg.uf}"></p:outputLabel>
+								<p:selectOneMenu id="uf"
+						  			value="#{municipioMB.municipio.uf}" converter="#{ufConvert}">
+						  			<f:selectItem  itemLabel="#{msg.selecione}" itemValue="" />
+						  			<f:selectItems value="#{municipioMB.listaUfSelect}" var="uf" 
+						  			itemLabel="#{uf.sigla}" itemValue="#{uf}"/>
+					    		</p:selectOneMenu>								
+	            			</p:panelGrid>
+	            		</div>
+	            		<div align="center">
+	            			<p:panelGrid columns="3">	
+								<p:commandButton value="#{msg.incluir}" action="#{municipioMB.salvar}" update="mensagens"/>
+								<p:commandButton type="reset" value="#{msg.limpar}" ajax="false"/>			
+								<p:commandButton value="#{msg.cancelar}" action="#{municipioMB.cancelar}" immediate="true"/>
+							</p:panelGrid>
+			    		</div>   
+			 	</p:panel>	
+		 		<div align="left">
+		    		<p:outputLabel value="#{ufMB.rodapePag}"></p:outputLabel>
+				</div>			 
+			</h:form>	
+		</ui:define>
+	</ui:composition>
+</html>

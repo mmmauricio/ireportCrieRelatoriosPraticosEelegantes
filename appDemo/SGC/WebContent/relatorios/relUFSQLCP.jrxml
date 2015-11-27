@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relUFSQL" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="22706a58-7951-4f79-bdc3-5c1fb0cfb310">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="imagemLogo" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="nmSistema" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="codigo" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT CODIGO_UF,NOME,SIGLA
+FROM UF
+WHERE CODIGO_UF = $P{codigo}]]>
+	</queryString>
+	<field name="codigo_uf" class="java.lang.Integer"/>
+	<field name="nome" class="java.lang.String"/>
+	<field name="sigla" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="1" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="81" splitType="Stretch">
+			<textField>
+				<reportElement x="128" y="12" width="268" height="20" uuid="ffdd7c44-b16b-4b56-9522-6a4701747bdb"/>
+				<textFieldExpression><![CDATA[$P{nmSistema}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="439" y="12" width="100" height="20" uuid="e5fecf26-9668-4ead-add5-9010e9c238b9"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="408" y="39" width="80" height="20" uuid="d81c219c-bca9-4ef8-97cf-5d3f8df4d288"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="488" y="39" width="40" height="20" uuid="76f03a43-8f32-4026-951b-beefb195f319"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="140" y="39" width="244" height="20" uuid="3d268c35-2ec1-44e5-86ae-478ce9aedbec"/>
+				<text><![CDATA[Relatório de UF com SQL e Parâmetro]]></text>
+			</staticText>
+			<image>
+				<reportElement x="16" y="9" width="100" height="50" uuid="ce170517-59a3-4081-82b4-482f2a8593f9"/>
+				<imageExpression><![CDATA[$P{imagemLogo}]]></imageExpression>
+			</image>
+			<line>
+				<reportElement x="0" y="69" width="555" height="1" uuid="9843aa26-7ef7-4aea-88bf-ce788f7900ec"/>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="52" splitType="Stretch">
+			<staticText>
+				<reportElement x="16" y="12" width="100" height="20" uuid="69fdfb2b-b7fb-4000-bef0-2586b7caa9d8"/>
+				<text><![CDATA[Código]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="153" y="12" width="100" height="20" uuid="978fd74f-377d-4a17-96e2-b194019498ac"/>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="428" y="12" width="100" height="20" uuid="a98df17a-a437-4387-b323-d7d78df6a1fb"/>
+				<text><![CDATA[Sigla]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="43" width="555" height="1" uuid="0bcf332d-bdf0-4f5e-aa85-ad86828c38a5"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="28" splitType="Stretch">
+			<textField>
+				<reportElement x="16" y="2" width="100" height="20" uuid="ded8f03c-a9f6-4893-974c-8e5452270919"/>
+				<textFieldExpression><![CDATA[$F{codigo_uf}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="153" y="2" width="243" height="20" uuid="a0ca770f-80bf-4c0c-9b0a-100b2e6089ff"/>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="428" y="2" width="100" height="20" uuid="9049c444-7cfe-40e8-8015-542cf6ae9232"/>
+				<textFieldExpression><![CDATA[$F{sigla}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

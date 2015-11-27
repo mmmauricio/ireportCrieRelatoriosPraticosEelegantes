@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:ui="http://java.sun.com/jsf/facelets" 
+	  xmlns:h="http://java.sun.com/jsf/html" 
+	  xmlns:f="http://java.sun.com/jsf/core" 
+	  xmlns:p="http://primefaces.org/ui">
+	  
+<ui:composition template="/templates/template.xhtml">
+<ui:define name="title"><p:outputLabel value="#{msg.cliente}"/></ui:define>
+	<ui:define name="context"> 
+		<h:form>
+	    	<p:panel align="center">
+	    	    <div align="center">
+	    			<p:outputLabel value="#{msg.listarClientes}"></p:outputLabel>
+			 	</div>
+			  	<div align="center">
+		    		<p:panelGrid columns="2" align="center" >		        
+		         		<p:outputLabel value="#{msg.codigo}"></p:outputLabel>
+				    	<p:inputText value="#{clienteMB.cliente.id}" size="50" maxlength="10"/> 
+						<p:outputLabel value="#{msg.nome}"></p:outputLabel>
+						<p:inputText value="#{clienteMB.cliente.nome}" size="50" maxlength="50"/>		
+					</p:panelGrid>
+	            </div>
+	            <div align="center">
+	            	<p:panelGrid columns="3">	
+						<p:commandButton value="#{msg.consultar}" ajax="false" action="#{clienteMB.consultar}"
+				     	rendered = "#{clienteMB.acesso}"
+				     	update="listaDeClientes,:mensagem"/>				     	
+						<p:commandButton type="reset" value="#{msg.limpar}" ajax="false"/>    
+						<p:commandButton value="#{msg.incluir}" rendered = "#{clienteMB.acesso}" action="#{clienteMB.incluir}"/> 
+				     </p:panelGrid>
+				     <p:panelGrid columns="1">	
+						<p:commandButton 
+						    value="#{msg.relatorioCliMap}" ajax="false" 
+						    actionListener="#{clienteMB.relatorio}"
+						    update=":mensagem">						  
+                        </p:commandButton>				     
+				     </p:panelGrid>
+			     </div>      
+			     <p></p>
+				 <p:dataTable value="#{clienteMB.listagemResultadoBusca}" rows="20" var="cliente"
+					id="listaDeClientes" align="center" width="80%" rendered="true" paginator="true">
+					<p:column width="30">
+						<f:facet name="header">
+							<p:outputLabel value="#{msg.codigo}"></p:outputLabel>
+						</f:facet>
+						<p:outputLabel value="#{cliente.id}"></p:outputLabel>
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<p:outputLabel value="#{msg.nome}"></p:outputLabel>
+						</f:facet>
+						<p:outputLabel value="#{cliente.nome}"></p:outputLabel>
+					</p:column>					
+					<p:column>
+						<f:facet name="header">
+							<p:outputLabel value="#{msg.latitude}"></p:outputLabel>
+						</f:facet>
+						<p:outputLabel value="#{cliente.dlatitude}"/>			
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<p:outputLabel value="#{msg.longitude}"></p:outputLabel>
+						</f:facet>
+						<p:outputLabel value="#{cliente.dlongitude}"/>			
+					</p:column>					
+					<p:column width="30">
+						<f:facet name="header">
+							<p:outputLabel value="#{msg.editar}"></p:outputLabel>
+						</f:facet>
+			    		<p:commandButton icon="ui-icon-pencil" rendered = "#{clienteMB.acesso}" action="#{clienteMB.editar}">
+					 		<f:setPropertyActionListener value="#{cliente}" target="#{clienteMB.cliente}"/>
+						</p:commandButton>
+					</p:column>
+					<p:column width="30">
+						<f:facet name="header">
+							<p:outputLabel value="#{msg.excluir}"></p:outputLabel>
+						</f:facet>
+			    		<p:commandButton icon="ui-icon-circle-close" action="#{clienteMB.excluir}" 
+						onclick="return confirm('Confirmar exclusao?');" rendered = "#{clienteMB.acesso}">
+							<f:setPropertyActionListener value="#{cliente}" target="#{clienteMB.cliente}" />				
+						</p:commandButton>
+					</p:column>
+			</p:dataTable>
+		 </p:panel>	
+		 <div align="left">
+		    <p:outputLabel value="#{clienteMB.rodapePag}"></p:outputLabel>
+		</div>			 
+		</h:form>			
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relCliMap" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="34bcad46-ca0b-4690-a118-93235377b264">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="imagemLogo" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="nmSistema" class="java.lang.String" isForPrompting="false"/>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="nome" class="java.lang.String"/>
+	<field name="endereco" class="java.lang.String"/>
+	<field name="observacao" class="java.lang.String"/>
+	<field name="latitude" class="java.lang.Float"/>
+	<field name="longitude" class="java.lang.Float"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="3" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="78" splitType="Stretch">
+			<image>
+				<reportElement x="11" y="14" width="100" height="50" uuid="b505395f-925d-4a9c-bfe8-d0dc3d1f1c5f"/>
+				<imageExpression><![CDATA[$P{imagemLogo}]]></imageExpression>
+			</image>
+			<textField isBlankWhenNull="true">
+				<reportElement x="124" y="14" width="295" height="20" uuid="bb230be7-8dc9-46a1-b508-a565a31f01be"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nmSistema}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="124" y="44" width="206" height="20" uuid="e66401f4-fda9-4350-bc15-6efca7f62831"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório de Cliente com Mapa]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="431" y="14" width="100" height="20" uuid="99a963f2-5c53-497b-8133-30e32a063361"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="411" y="44" width="80" height="20" uuid="07b92167-00d1-4c50-9503-8ea41a204603"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="491" y="44" width="40" height="20" uuid="efc87d7d-94c3-48da-ba9f-f28759ce982e"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="71" width="555" height="1" uuid="a5b2559c-1bfe-43cd-ae4d-9d918f8ee3b8"/>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="222" splitType="Stretch">
+			<staticText>
+				<reportElement x="11" y="10" width="48" height="20" uuid="5b4d2de8-1a99-4597-8903-504513a172bd"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Código]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="30" width="48" height="20" uuid="b2f4a883-3a3a-4b5e-92be-6b17f5e1a234"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="212" width="555" height="1" uuid="6050fa9e-3274-48da-94c6-a30de276fdf1"/>
+			</line>
+			<textField isBlankWhenNull="true">
+				<reportElement x="69" y="10" width="82" height="20" uuid="b6c725b3-d4da-46bc-9d37-9ad152282334"/>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="73" y="30" width="346" height="20" uuid="9d841406-eee0-4faa-98f9-6916d97945b2"/>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="73" y="53" width="470" height="20" uuid="694f9d9a-869d-4a07-ba45-c7db1870a94f"/>
+				<textFieldExpression><![CDATA[$F{endereco}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="11" y="105" width="532" height="94" uuid="72692fe0-05be-4135-ae8d-4e14055230c3"/>
+				<textFieldExpression><![CDATA[$F{observacao}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="11" y="53" width="49" height="20" uuid="e0270077-2152-49c8-9f30-dc0aecfaed87"/>
+				<text><![CDATA[Endereço]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="73" width="100" height="20" uuid="30849733-fa99-4fcb-b68e-074bb175ee94"/>
+				<text><![CDATA[Observação]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="358" splitType="Stretch">
+			<componentElement>
+				<reportElement x="11" y="18" width="520" height="327" uuid="42aa149a-90ba-4377-a166-87755862186c"/>
+				<mp:map xmlns:mp="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<mp:latitudeExpression><![CDATA[$F{latitude}]]></mp:latitudeExpression>
+					<mp:longitudeExpression><![CDATA[$F{longitude}]]></mp:longitudeExpression>
+					<mp:zoomExpression><![CDATA[15]]></mp:zoomExpression>
+				</mp:map>
+			</componentElement>
+		</band>
+	</summary>
+</jasperReport>

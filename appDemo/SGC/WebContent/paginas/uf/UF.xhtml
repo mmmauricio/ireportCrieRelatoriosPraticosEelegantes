@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:ui="http://java.sun.com/jsf/facelets" 
+	  xmlns:h="http://java.sun.com/jsf/html" 
+	  xmlns:f="http://java.sun.com/jsf/core" 
+	  xmlns:p="http://primefaces.org/ui">
+	  
+<ui:composition template="/templates/template.xhtml">
+<ui:define name="title"><p:outputLabel value="#{msg.uf}"/></ui:define>
+	<ui:define name="context"> 
+		<h:form id='fuf'>		    
+	    	<p:panel align="center">
+	    	    <div align="center">
+	    			<p:outputLabel value="#{msg.listarEstados}"></p:outputLabel>
+			 	</div>
+			  	<div align="center">
+		    	<p:panelGrid columns="2" align="center" >		        
+		         	<p:outputLabel value="#{msg.codigo}"></p:outputLabel>
+				    <p:inputText value="#{ufMB.uf.id}" size="50" maxlength="10"></p:inputText> 
+					<p:outputLabel value="#{msg.nome}"></p:outputLabel>
+					<p:inputText value="#{ufMB.uf.nome}" size="50" maxlength="50"></p:inputText> 
+					<p:outputLabel value="#{msg.sigla}"></p:outputLabel>
+					<p:inputText value="#{ufMB.uf.sigla}" size="50" maxlength="2"></p:inputText>						
+	            </p:panelGrid>
+	            </div>
+	            <div align="center">
+	            	<p:panelGrid columns="3">	
+						<p:commandButton value="#{msg.consultar}" ajax="false" action="#{ufMB.consultar}"
+				     	rendered = "#{ufMB.acesso}"
+				     	update="listaDeUF,:mensagem"/>
+						<p:commandButton type="reset" value="#{msg.limpar}" ajax="false"/>    
+						<p:commandButton value="#{msg.incluir}" rendered = "#{ufMB.acesso}" action="#{ufMB.incluir}"/>						 
+				    </p:panelGrid>
+				    <p:panelGrid columns="4">	
+						<p:commandButton 
+						    value="#{msg.relatorioSimples}" ajax="false" 
+						    actionListener="#{ufMB.relatorio}">						  
+                        </p:commandButton>
+                        <p:commandButton 
+						    value="#{msg.relatorioSql}" ajax="false" 
+						    actionListener="#{ufMB.relatorioSQL}">    
+					    </p:commandButton>
+					    <p:commandButton 
+						    value="#{msg.relatorioSqlCP}" ajax="false" 
+						    actionListener="#{ufMB.relatorioSQLCP}">						  
+                        </p:commandButton>
+                        <p:commandButton 
+						    value="#{msg.relatorioSubRel}" ajax="false" 
+						    actionListener="#{ufMB.relatorioSubRel}">    
+					    </p:commandButton>					    	 
+				    </p:panelGrid>
+			     </div>      
+			     <p></p>
+				 <p:dataTable value="#{ufMB.listagemResultadoBusca}" rows="20" var="uf"
+					id="listaDeUF" align="center" width="80%" rendered="true" paginator="true">
+					<p:column width="30">
+						<f:facet name="header">
+							<p:outputLabel value="#{msg.codigo}"></p:outputLabel>
+						</f:facet>
+						<p:outputLabel value="#{uf.id}"></p:outputLabel>
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<p:outputLabel value="#{msg.nome}"></p:outputLabel>
+						</f:facet>
+						<p:outputLabel value="#{uf.nome}"></p:outputLabel>
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<p:outputLabel value="#{msg.sigla}"></p:outputLabel>
+						</f:facet>
+						<p:outputLabel value="#{uf.sigla}"></p:outputLabel>
+					</p:column>
+					<p:column width="30">
+						<f:facet name="header">
+							<p:outputLabel value="#{msg.editar}"></p:outputLabel>
+						</f:facet>			    		
+						<p:commandButton icon="ui-icon-pencil"  rendered = "#{ufMB.acesso}" action="#{ufMB.editar}">
+					 		<f:setPropertyActionListener value="#{uf}" target="#{ufMB.uf}"/>
+						</p:commandButton>
+					</p:column>
+					<p:column width="30">
+						<f:facet name="header">
+							<p:outputLabel value="#{msg.excluir}"></p:outputLabel>
+						</f:facet>
+			    		<p:commandButton icon="ui-icon-circle-close" action="#{ufMB.excluir}" 
+						onclick="return confirm('Confirmar exclusao?');" rendered = "#{ufMB.acesso}">
+							<f:setPropertyActionListener value="#{uf}" target="#{ufMB.uf}" />				
+						</p:commandButton>
+					</p:column>
+			</p:dataTable>
+		 </p:panel>	
+		 <div align="left">
+		    <p:outputLabel value="#{ufMB.rodapePag}"></p:outputLabel>
+		</div>			 
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
